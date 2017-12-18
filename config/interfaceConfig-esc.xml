@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<interfaces>
+    <common>
+        <Scheme>http</Scheme>
+        <url>gateway.pay.esc.diligrp.com/partner/gateway.do?</url>
+        <method>post</method>
+        <partnerId>1</partnerId>
+        <header>{'Accept':'*/*','Accept-Encoding': 'gzip,deflate','Accept-Language': 'zh-CN,zh;q=0.8','User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36','Content-Type': 'application/json','Origin': 'chrome-extension://aejoelaoggembcahagimdiliamlcdmfm','Connection': 'keep-alive','Host': 'gateway.pay.esc.diligrp.com'}</header>
+    </common>
+    <interface service="dilipay.trade.create.unload" interfacename="创建圈提记录">
+        <accountId>105372</accountId>
+        <amount>100</amount>
+        <name>圈提</name>
+        <bankAccount>62271111111111122</bankAccount>
+        <sysPwd>CFF6578637BEEAB06F27AE0C38B29772</sysPwd>
+    </interface>
+    <interface service="dilipay.trade.create.withdraw" interfacename="圈提">
+        <name>圈提</name>
+        <channelId>5</channelId>
+        <accountId>105372</accountId>
+        <bankAccount>62250000000000000000</bankAccount>
+        <amount>200</amount>
+        <sysPwd>CFF6578637BEEAB06F27AE0C38B29772</sysPwd>
+        <payToken>1knqz9w1c64j5mkh1f</payToken>
+    </interface>
+    <interface service="dilipay.trade.create.predeposit" interfacename="创建圈存记录">
+        <partnerId>1</partnerId>
+        <accountId>105372</accountId>
+        <amount>100</amount>
+        <name>圈存</name>
+    </interface>
+    <interface service="dilipay.account.add.balance" interfacename="账户资金增加" depend="dilipay.trade.create.predeposit">
+        <accountId>105372</accountId>
+        <bankAccount>622888880000000</bankAccount>
+        <amount>100</amount>
+        <serialNo>2016033000000000101</serialNo>
+        <transDate>2016030830</transDate>
+        <transTime>181111</transTime>
+        <bankTransStatus>0</bankTransStatus>
+        <bankSerialNo>2016033011111</bankSerialNo>
+        <transType>0</transType>
+    </interface>
+    <interface service="dilipay.account.info.register" interfacename="资金账户注册">
+        <type>1</type>
+        <mobile>18200588802</mobile>
+        <userName>地利宝</userName>
+        <tradePwd>123123</tradePwd>
+        <certName>测试之美</certName>
+        <certType>1</certType>
+        <certNo>510681198911070614</certNo>
+        <bankCardNo>6333021001070070011</bankCardNo>
+        <bankCardType>1</bankCardType>
+        <loginPwd>123456</loginPwd>
+    </interface>
+    <interface service="dilipay.trade.pay" interfacename="充值交易支付" depend="dilipay.trade.create.deposit">
+        <accountId>105372</accountId>
+        <channelAmount>300</channelAmount>
+        <tradeIds>[2016051900000021201]</tradeIds>
+        <channelId>1</channelId>
+        <certName>测试之美</certName>
+        <paymentTypeId>1</paymentTypeId>
+        <payToken>632541</payToken>
+        <bankAccountType>0</bankAccountType>
+        <ebankType>0</ebankType>
+        <custAppType>1</custAppType>
+    </interface>
+    <interface service="dilipay.account.fund.freeze" interfacename="冻结账号资金">
+        <accountId>105372</accountId>
+        <amount>100</amount>
+        <sign>31p90XpdAIWJ81TxuY2AmIib8SNaAB0uzMspk3iJDHq8jjcshG2qYMzqIwULiIRbl/WRtu1ToBo7TNWIASPH9mVZV82DmgzLqxJmcp//KSwhNEH+s8uOsrurgAnHmOJxXAxVNlHSZ7HXHXiy3HCgRCiJMhQBrSbnp5eWiB/oHKY=</sign>
+        <partnerId>1</partnerId>
+        <inputCharset>UTF-8</inputCharset>
+        <signType>RSA</signType>
+        <format>json</format>
+        <ver>3.0.0</ver>
+    </interface>
+    <interface service="dilipay.account.fund.unfreeze" interfacename="解冻账号资金" depend="dilipay.account.fund.freeze">
+        <id>20150918000019402</id>
+        <sign>31p90XpdAIWJ81TxuY2AmIib8SNaAB0uzMspk3iJDHq8jjcshG2qYMzqIwULiIRbl/WRtu1ToBo7TNWIASPH9mVZV82DmgzLqxJmcp//KSwhNEH+s8uOsrurgAnHmOJxXAxVNlHSZ7HXHXiy3HCgRCiJMhQBrSbnp5eWiB/oHKY=</sign>
+        <partnerId>1</partnerId>
+        <inputCharset>UTF-8</inputCharset>
+        <signType>RSA</signType>
+        <format>json</format>
+        <ver>3.0.0</ver>
+    </interface>
+    <interface service="dilipay.trade.create.direct" interfacename="创建及时到账交易">
+        <accountId>105372</accountId>
+        <amount>100</amount>
+        <desAccountNo>105371</desAccountNo>
+        <name>TradeCreateDirect</name>
+        <notifyUrl>http://1baidu.com</notifyUrl>
+        <outTradeNo>2016033015000000201</outTradeNo>
+        <returnUrl>http://2baidu.com</returnUrl>
+        <showUrl>http://3baidu.com</showUrl>
+    </interface>
+    <interface service="dilipay.account.fund.unfreeze.batch" interfacename="批量解冻账号资金" depend="dilipay.account.fund.unfreeze">
+        <ids>20150918000019706,20150918000019707,20150918000019708,20150918000019709,20150918000019710,20150918000019711,20150918000019712,20150918000019713,20150918000019714,20150918000019715,20150918000019717</ids>
+        <sign>31p90XpdAIWJ81TxuY2AmIib8SNaAB0uzMspk3iJDHq8jjcshG2qYMzqIwULiIRbl/WRtu1ToBo7TNWIASPH9mVZV82DmgzLqxJmcp//KSwhNEH+s8uOsrurgAnHmOJxXAxVNlHSZ7HXHXiy3HCgRCiJMhQBrSbnp5eWiB/oHKY=</sign>
+        <partnerId>1</partnerId>
+        <inputCharset>UTF-8</inputCharset>
+        <format>json</format>
+        <ver>3.0.0</ver>
+    </interface>
+    <interface service="dilipay.password.limit.clear" interfacename="清除支付密码错误次数">
+        <accountId>105372</accountId>
+    </interface>
+    <interface service="dilipay.trade.create.deposit" interfacename="现金充值交易创建">
+        <accountId>105372</accountId>
+        <amount>102</amount>
+        <outTradeNo>2016033015000000101</outTradeNo>
+        <name>充值</name>
+    </interface>
+    <interface service="dilipay.trade.withdraw.cash" interfacename="现金提现">
+        <accountId>105372</accountId>
+        <amount>100</amount>
+        <name>现金提现</name>
+        <channelId>1000020</channelId>
+        <payToken>5s8c28pexzg7m8sebv</payToken>
+    </interface>
+    <interface service="dilipay.account.secured.auth" interfacename="统一账号身份认证">
+        <accountId>105372</accountId>
+        <amount>100</amount>
+        <payPwd>CFF6578637BEEAB06F27AE0C38B29772</payPwd>
+    </interface>
+    <interface service="dilipay.account.balance.unload" interfacename="自动圈提确认" depend="dilipay.trade.create.unload">
+        <accountId>105372</accountId>
+        <amount>100</amount>
+        <bankAccount>622888880000000</bankAccount>
+        <serialNo>2016033000000000101</serialNo>
+        <transDate>2016030830</transDate>
+        <transTime>181111</transTime>
+        <bankSerialNo>2016033011111</bankSerialNo>
+        <transType>1</transType>
+        <bankTransStatus>0</bankTransStatus>
+    </interface>
+    <interface service="dilipay.account.info.get" interfacename="获取账户信息">
+        <mobile>18200588888</mobile>
+        <loginName>登录名</loginName>
+        <isNeedFundInfo>true</isNeedFundInfo>
+        <isNeedCertInfo>true</isNeedCertInfo>
+        <isNeedPrivilegeInfo>true</isNeedPrivilegeInfo>
+        <isNeedBankCardBindInfo>true</isNeedBankCardBindInfo>
+        <isNeedHisTransferAccountInfo>true</isNeedHisTransferAccountInfo>
+    </interface>
+    <interface service="dilipay.account.balance.get" interfacename="获取账户可用余额">
+        <accountId>105372</accountId>
+        <tradePwd>CFF6578637BEEAB06F27AE0C38B29772</tradePwd>
+    </interface>
+    <interface service="dilipay.account.status.unfreeze" interfacename="解冻账号">
+        <id>105371</id>
+    </interface>
+    <interface service="dilipay.account.fund.freeze.list" interfacename="账号冻结资金明细查询">
+        <accountId>105372</accountId>
+        <startTime>2016-07-01</startTime>
+        <endTime>2016-07-30</endTime>
+        <minAmount>1</minAmount>
+        <maxAmount>1000</maxAmount>
+    </interface>
+    <interface service="dilipay.account.info.register" interfacename="账户注册">
+        <type>1</type>
+        <mobile>18200588802</mobile>
+        <userName>地利宝</userName>
+        <tradePwd>123123</tradePwd>
+        <certName>付波</certName>
+        <certType>1</certType>
+        <certNo>510681198911070614</certNo>
+        <bankCardNo>6333021001070070011</bankCardNo>
+        <bankCardType>1</bankCardType>
+        <loginPwd>123456</loginPwd>
+    </interface>
+    
+</interfaces>

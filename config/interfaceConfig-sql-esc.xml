@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<interfaces>
+    <interface service="dilipay.account.add.balance" interfacename="账户资金增加">
+        <sql>select id,amount from trade_payment</sql>
+        <serialNo>0</serialNo>
+        <amount>0</amount>>
+    </interface>
+    <interface service="dilipay.trade.pay" interfacename="充值交易支付">
+        <sql>select id,amount from trade</sql>
+        <tradeIds>[0]</tradeIds>
+        <channelAmount>0</channelAmount>
+    </interface>
+    <interface service="dilipay.account.balance.unload" interfacename="自动圈提确认">
+        <sql>select id,amount from trade_payment</sql>
+        <serialNo>0</serialNo>>
+        <amount>0</amount>
+    </interface>
+    <interface service="dilipay.account.fund.unfreeze" interfacename="解冻账号资金">
+        <sql>select id from account_fund_frozen</sql>
+        <id>0</id>
+    </interface>
+    <interface service="dilipay.account.fund.unfreeze.batch" interfacename="批量解冻账号资金">
+        <sql>select id from account_fund_frozen</sql>
+        <ids>0</ids>
+    </interface>
+</interfaces>
